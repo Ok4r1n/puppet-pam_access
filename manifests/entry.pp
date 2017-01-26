@@ -102,28 +102,26 @@ define pam_access::entry (
 
   case $ensure {
     'present': {
-      $create_cmds = $real_position ? {
+      $create_cmds = [
+          "set access[last()+1] '${permission}'",
+          "set access[last()]/${context} '${userstr}'",
+          "set access[last()]/origin '${origin}'",
+      ]
+      $mv_cmds = $real_position ? {
         'after'  => [
-          "set access[last()+1] ${permission}",
-          "set access[last()]/${context} ${userstr}",
-          "set access[last()]/origin ${origin}",
         ],
         'before' => [
           'ins access before access[1]',
-          "set access[1] ${permission}",
-          "set access[1]/${context} ${userstr}",
-          "set access[1]/origin ${origin}",
+          'mv access[last()] access[1]',
         ],
         '-1'     => [
-          'ins access before access[last()]',
-          "set access[last()-1] ${permission}",
-          "set access[last()-1]/${context} ${userstr}",
-          "set access[last()-1]/origin ${origin}",
+          'ins access before access[last()-1]',
+          "mv access[last()] access[last()-2]",
         ],
       }
-
+      
       augeas { "pam_access/${context}/${permission}:${userstr}:${origin}/${ensure}":
-        changes => $create_cmds,
+        changes => union($create_cmds,$mv_cmds),
         onlyif  => "match access[. = '${permission}'][${context} = '${userstr}'][origin = '${origin}'] size == 0",
       }
     }

@@ -1,12 +1,12 @@
 {
-  "name": "MiamiOH-pam_access",
-  "version": "1.0.1",
+  "name": "Ok4r1n-pam_access",
+  "version": "1.0.2",
   "author": "Harvard University Information Technology, Miami University Information Technology",
   "summary": "Manage access.conf entries with Augeas",
   "license": "MIT",
-  "source": "https://github.com/MiamiOH/puppet-pam_access.git",
-  "project_page": "https://github.com/MiamiOH/puppet-pam_access",
-  "issues_url": "https://github.com/MiamiOH/puppet-pam_access/issues",
+  "source": "https://github.com/Ok4r1n/puppet-pam_access.git",
+  "project_page": "https://github.com/Ok4r1n/puppet-pam_access",
+  "issues_url": "https://github.com/Ok4r1n/puppet-pam_access/issues",
   "tags": ["pam", "access"],
   "description": "The pam_access module allows access control based on username, groupname, network address, and process name.  This module allows Puppet to manage entries in the access.conf file.",
   "dependencies": [

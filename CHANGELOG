@@ -1,3 +1,7 @@
+2017-01-26
+        * Fix empty file issue
+        * Update meta files
+
 2016-10-05 (1.0.1) Chris Edester
         * Update meta files and fix spec tests etc.
 
